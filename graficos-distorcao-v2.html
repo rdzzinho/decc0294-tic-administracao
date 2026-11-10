@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exemplo 2 — Gráficos de Linha e Viés de Distorção</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    :root { --ink:#111827; --muted:#6b7280; --good:#16a34a; --bad:#dc2626; --warn:#d97706; }
+    * { box-sizing: border-box; }
+    body { font-family: "Segoe UI", system-ui, Arial, sans-serif; margin: 0; padding: 32px; background: linear-gradient(180deg,#f8fafc 0%,#eef2f7 100%); color: var(--ink); }
+    header { max-width: 1100px; margin: 0 auto 24px; }
+    h1 { margin: 0 0 6px; font-size: 26px; letter-spacing: -0.02em; }
+    .lead { color: var(--muted); max-width: 900px; line-height: 1.5; }
+    .pill { display:inline-block; padding: 2px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; margin-right:6px; }
+    .pill.good { background:#dcfce7; color:#166534; }
+    .pill.bad { background:#fee2e2; color:#991b1b; }
+    .pill.warn { background:#fef3c7; color:#92400e; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 1100px; margin: 0 auto; }
+    .card { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 4px 14px rgba(0,0,0,.06); border: 1px solid #e5e7eb; }
+    .card h2 { font-size: 17px; margin: 0 0 2px; }
+    .card .sub { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+    canvas { max-height: 340px; }
+    .note { margin-top: 12px; font-size: 13px; line-height: 1.45; padding: 10px 12px; border-radius: 6px; border-left: 4px solid #9ca3af; background:#f9fafb; }
+    .note.good { border-left-color: var(--good); background:#f0fdf4; }
+    .note.bad { border-left-color: var(--bad); background:#fef2f2; }
+    .note.warn { border-left-color: var(--warn); background:#fffbeb; }
+    .full { grid-column: 1 / -1; }
+    .stats { display:flex; gap:16px; flex-wrap:wrap; margin: 14px 0 4px; }
+    .stat { background:#f3f4f6; border-radius:8px; padding:8px 12px; font-size:13px; }
+    .stat b { display:block; font-size:18px; }
+    table { border-collapse: collapse; width:100%; font-size:13px; margin-top:12px; }
+    th,td { border:1px solid #e5e7eb; padding:7px 9px; text-align:center; }
+    th { background:#f3f4f6; font-weight:600; }
+    tr.highlight td { background:#fef9c3; }
+    .principles { max-width:1100px; margin: 28px auto 0; background:#fff; border-radius:14px; padding:20px; border:1px solid #e5e7eb; }
+    .principles h3 { margin:0 0 8px; }
+    .principles ul { margin:6px 0 0 18px; line-height:1.6; font-size:14px; }
+    @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Exemplo 2 — Mesmos dados, leituras opostas</h1>
+    <p class="lead">
+      Cenário: receita trimestral (em milhões de R$) de uma empresa de varejo ao longo de 8 trimestres.
+      A empresa cresceu ~12% no período, mas teve uma queda de ~3% no último trimestre.
+      Os gráficos abaixo usam <strong>exatamente os mesmos números</strong> — só a apresentação muda.
+    </p>
+  </header>
+
+  <div class="grid">
+    <!-- 1 honesto -->
+    <div class="card">
+      <h2><span class="pill good">Honesto</span> Gráfico de referência</h2>
+      <div class="sub">Eixo Y em 0 · escala linear · eixo X uniforme · título neutro</div>
+      <canvas id="c1"></canvas>
+      <div class="note good">
+        Mostra o crescimento real de ~12% e a pequena queda final. A linha é suave e a variação é proporcional.
+      </div>
+    </div>
+
+    <!-- 2 distorcido -->
+    <div class="card">
+      <h2><span class="pill bad">Distorcido</span> "Empresa em colapso!"</h2>
+      <div class="sub">Eixo Y de 118 a 134 · título sensacionalista · cor vermelha</div>
+      <canvas id="c2"></canvas>
+      <div class="note bad">
+        Cortar a base do eixo Y + título alarmista faz uma queda de ~3% parecer um desastre. A cor vermelha reforça o viés emocional.
+      </div>
+    </div>
+
+    <!-- 3 distorcido 2 -->
+    <div class="card">
+      <h2><span class="pill bad">Distorcido</span> "Crescimento explosivo!"</h2>
+      <div class="sub">Eixo Y de 118 a 134 · título otimista · cor verde</div>
+      <canvas id="c3"></canvas>
+      <div class="note bad">
+        Mesma distorção, leitura oposta: agora a subida de ~12% parece uma escalada vertical. O viés depende do recorte e do título.
+      </div>
+    </div>
+
+    <!-- 4 corrigido -->
+    <div class="card">
+      <h2><span class="pill warn">Corrigido</span> Com contexto e anotações</h2>
+      <div class="sub">Eixo Y em 0 · banda da média · anotação do evento</div>
+      <canvas id="c4"></canvas>
+      <div class="note warn">
+        Adiciona média móvel e anotação do trimestre atípico. Ajuda o leitor a interpretar sem distorcer a escala.
+      </div>
+    </div>
+
+    <!-- tabela -->
+    <div class="card full">
+      <h2>Dados (idênticos em todos os gráficos)</h2>
+      <div class="sub">Receita trimestral em milhões de R$</div>
+      <div class="stats">
+        <div class="stat"><span>Início</span><b>120,0</b></div>
+        <div class="stat"><span>Pico</span><b>135,0</b></div>
+        <div class="stat"><span>Fim</span><b>134,0</b></div>
+        <div class="stat"><span>Variação total</span><b>+11,7%</b></div>
+        <div class="stat"><span>Queda final</span><b>-0,7%</b></div>
+      </div>
+      <table id="tbl"></table>
+    </div>
+  </div>
+
+  <div class="principles">
+    <h3>Princípios para evitar distorção (Tufte / Few)</h3>
+    <ul>
+      <li><strong>Baseline zero</strong> em gráficos de barras e em linhas quando a magnitude importa; se truncar, avise explicitamente.</li>
+      <li><strong>Escala proporcional</strong>: a variação visual deve ser proporcional à variação numérica.</li>
+      <li><strong>Eixo X uniforme</strong>: tempo deve ter espaçamento constante; nunca agrupe pontos arbitrariamente.</li>
+      <li><strong>Título neutro</strong>: evite adjetivos que induzam conclusão; descreva o que o gráfico mostra.</li>
+      <li><strong>Cor com propósito</strong>: vermelho/verde só para sinalizar status real, não para manipular emoção.</li>
+      <li><strong>Contexto</strong>: inclua média, meta ou histórico para evitar leitura isolada.</li>
+    </ul>
+  </div>
+
+  <script>
+    const labels = ["1T24","2T24","3T24","4T24","1T25","2T25","3T25","4T25"];
+    const valores = [120, 124, 122, 128, 131, 133, 135, 134];
+
+    const base = (yMin, yMax, step, color, title) => ({
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        title: { display: !!title, text: title, font: { size: 12, weight: '600' }, color: '#374151' }
+      },
+      scales: {
+        y: { min: yMin, max: yMax, ticks: { stepSize: step }, grid: { color: '#f1f5f9' } },
+        x: { grid: { display: false } }
+      }
+    });
+
+    // 1 honesto
+    new Chart(document.getElementById('c1'), {
+      type: 'line',
+      data: { labels, datasets: [{ data: valores, borderColor: '#2563eb', backgroundColor:'rgba(37,99,235,.08)', fill:true, tension: 0.35, pointRadius: 5, pointBackgroundColor:'#2563eb' }] },
+      options: base(0, 145, 20)
+    });
+
+    // 2 distorcido colapso
+    new Chart(document.getElementById('c2'), {
+      type: 'line',
+      data: { labels, datasets: [{ data: valores, borderColor: '#dc2626', backgroundColor:'rgba(220,38,38,.12)', fill:true, tension: 0.35, pointRadius: 5, pointBackgroundColor:'#dc2626' }] },
+      options: base(118, 136, 2, null, 'Empresa em colapso!')
+    });
+
+    // 3 distorcido explosivo
+    new Chart(document.getElementById('c3'), {
+      type: 'line',
+      data: { labels, datasets: [{ data: valores, borderColor: '#16a34a', backgroundColor:'rgba(22,163,74,.12)', fill:true, tension: 0.35, pointRadius: 5, pointBackgroundColor:'#16a34a' }] },
+      options: base(118, 136, 2, null, 'Crescimento explosivo!')
+    });
+
+    // 4 corrigido com média móvel e anotação
+    const media = valores.reduce((a,b)=>a+b,0)/valores.length;
+    const movel = valores.map((v,i,arr) => i===0 ? v : (arr.slice(Math.max(0,i-2),i+1).reduce((a,b)=>a+b,0)/Math.min(3,i+1)));
+    new Chart(document.getElementById('c4'), {
+      type: 'line',
+      data: {
+        labels,
+        datasets: [
+          { label: 'Receita', data: valores, borderColor: '#2563eb', tension: 0.35, pointRadius: 4, pointBackgroundColor:'#2563eb' },
+          { label: 'Média móvel (3T)', data: movel, borderColor: '#9ca3af', borderDash: [5,4], tension: 0.35, pointRadius: 0, fill: false }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: { display: true, position:'bottom', labels:{boxWidth:12,font:{size:11}} },
+          annotation: {}
+        },
+        scales: {
+          y: { min: 0, max: 145, ticks: { stepSize: 20 }, grid: { color: '#f1f5f9' } },
+          x: { grid: { display: false } }
+        }
+      }
+    });
+
+    // tabela
+    const tbl = document.getElementById('tbl');
+    let html = '<tr><th>Trimestre</th>';
+    labels.forEach(l => html += `<th>${l}</th>`);
+    html += '</tr><tr><td>Receita (mi R$)</td>';
+    valores.forEach((v,i) => html += `<td${i===valores.length-1?' class="highlight"':''}>${v.toFixed(1)}</td>`);
+    html += '</tr>';
+    tbl.innerHTML = html;
+  </script>
+</body>
+</html>

@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Importância da Gestão de Estoques nas Empresas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;600&display=swap');
+
+  /* ---------- Paleta ---------- */
+  :root {
+    --azul-escuro: #0B3C5D;
+    --azul-medio: #1B6CA8;
+    --azul-claro: #4DA3D6;
+    --azul-muito-claro: #DCEEF7;
+    --cinza-azulado: #F4F7FA;
+    --texto-escuro: #1F2937;
+    --branco: #FFFFFF;
+    --cinza-texto: #6b7a8d;
+  }
+
+  /* ---------- Página A4 ---------- */
+  @page {
+    size: A4;
+    margin: 1.8cm 1.6cm 2.1cm 1.6cm;
+    @bottom-center {
+      content: "Richard Castro — Disciplina: Administração";
+      font-family: 'Inter', sans-serif;
+      font-size: 7.5pt;
+      color: var(--cinza-texto);
+      border-top: 0.5pt solid #c9d6e2;
+      padding-top: 5pt;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { font-size: 10.5pt; }
+
+  body {
+    font-family: 'Inter', 'Open Sans', 'Lato', sans-serif;
+    color: var(--texto-escuro);
+    line-height: 1.6;
+    margin: 0;
+    background: #ffffff;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Poppins', 'Montserrat', sans-serif;
+    color: var(--azul-escuro);
+    margin-top: 1.7rem;
+    margin-bottom: 0.8rem;
+  }
+
+  h1 { font-size: 1.9rem; font-weight: 700; }
+  h2 { font-size: 1.5rem; font-weight: 700; border-bottom: 2.5pt solid var(--azul-medio); padding-bottom: 0.35rem; }
+  h3 { font-size: 1.2rem; font-weight: 600; color: var(--azul-medio); }
+  p { margin: 0.6rem 0; text-align: justify; }
+  ul, ol { margin: 0.6rem 0 0.6rem 1.4rem; padding: 0; }
+  li { margin-bottom: 0.45rem; text-align: justify; }
+
+  strong { color: var(--azul-escuro); }
+
+  /* ---------- Capa ---------- */
+  .cover {
+    background: var(--azul-escuro);
+    color: var(--branco);
+    padding: 2.6cm 2cm;
+    min-height: 25.5cm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: -10%; right: -10%;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, rgba(27,108,168,0.18) 0%, transparent 60%);
+    border-radius: 50%;
+  }
+
+  .cover h1 { font-size: 2.2rem; line-height: 1.25; color: var(--branco); margin: 0.5rem 0 0.6rem; border: none; }
+  .cover h2 { font-size: 1.15rem; color: var(--azul-claro); font-weight: 400; border: none; margin-bottom: 2.5rem; }
+
+  .cover-icons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .icon-svg {
+    width: 48px; height: 48px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  }
+
+  .cover-dados {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(4px);
+    padding: 1.6rem;
+    border-radius: 10px;
+    border: 1pt solid rgba(255,255,255,0.25);
+  }
+
+  .cover-dados p { margin: 0.4rem 0; color: var(--branco); font-size: 1rem; }
+  .cover-dados strong { color: var(--azul-claro); }
+
+  .particula {
+    position: absolute;
+    background: rgba(77,163,214,0.25);
+    border-radius: 50%;
+    opacity: 0.5;
+  }
+
+  /* ---------- Sumário ---------- */
+  .sumario {
+    background: var(--cinza-azulado);
+    padding: 1.6rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+  }
+  .sumario h2 { margin-top: 0; color: var(--azul-escuro); font-size: 1.5rem; }
+  .sumario ol { list-style: none; padding: 0; margin: 0.8rem 0 0; }
+  .sumario li {
+    margin-bottom: 0.55rem;
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .sumario li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.25rem;
+    width: 7px; height: 7px;
+    background: var(--azul-medio);
+    border-radius: 50%;
+  }
+  .sumario a { text-decoration: none; color: var(--texto-escuro); font-weight: 500; }
+
+  /* ---------- Cards ---------- */
+  .card {
+    background: var(--azul-muito-claro);
+    border-left: 6pt solid var(--azul-medio);
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    page-break-inside: avoid;
+  }
+  .card.destaque {
+    background: var(--azul-escuro);
+    color: var(--branco);
+    border-left: 6pt solid var(--azul-claro);
+  }
+  .card.destaque p, .card.destaque strong { color: var(--branco); }
+  .card h4 { margin-top: 0; font-size: 1rem; color: inherit; }
+
+  .cards-grid {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 1rem 0;
+  }
+  .card-mini {
+    flex: 1 1 170px;
+    background: var(--azul-muito-claro);
+    border-radius: 8px;
+    padding: 1rem;
+    border-top: 4pt solid var(--azul-medio);
+    page-break-inside: avoid;
+  }
+  .card-mini .numero {
+    font-size: 1.7rem; font-weight: 700; color: var(--azul-escuro);
+    font-family: 'Poppins', sans-serif;
+  }
+  .card-mini .rotulo { font-size: 0.85rem; color: #4a5a6a; margin-top: 0.25rem; }
+
+  /* ---------- Gráficos ---------- */
+  .grafico {
+    margin: 1.4rem 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .grafico svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+  .legenda {
+    font-size: 0.85rem;
+    color: #5a6a7a;
+    margin-top: 0.5rem;
+    text-align: center;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+    page-break-inside: auto;
+  }
+  th, td {
+    border: 0.5pt solid #c9d6e2;
+    padding: 0.55rem 0.8rem;
+    text-align: left;
+  }
+  th { background: var(--azul-muito-claro); color: var(--azul-escuro); font-weight: 600; }
+  tr:nth-child(even) { background: var(--cinza-azulado); }
+
+  .secao {
+    margin-bottom: 2.2rem;
+    page-break-inside: avoid;
+  }
+
+  .secao-full {
+    margin-bottom: 2.2rem;
+  }
+
+  .footer-note {
+    font-size: 8pt;
+    color: var(--cinza-texto);
+    border-top: 0.5pt solid #c9d6e2;
+    margin-top: 1.6rem;
+    padding-top: 0.6rem;
+    text-align: center;
+  }
+
+  .pill {
+    display: inline-block;
+    background: var(--azul-medio);
+    color: #fff;
+    padding: 0.15rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    margin-right: 0.4rem;
+  }
+
+  .icon { width: 18px; height: 18px; vertical-align: middle; margin-right: 6px; }
+</style>
+</head>
+<body>
+
+<!-- ===================== CAPA ===================== -->
+<div class="cover">
+  <div class="cover-icons">
+    <!-- Caixa -->
+    <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="26" width="44" height="26" fill="#4DA3D6" rx="3"/>
+      <rect x="14" y="22" width="36" height="8" fill="#1B6CA8" rx="2"/>
+      <line x1="32" y1="26" x2="32" y2="52" stroke="#0B3C5D" stroke-width="2"/>
+      <line x1="10" y1="39" x2="54" y2="39" stroke="#0B3C5D" stroke-width="2"/>
+    </svg>
+    <!-- Prateleira -->
+    <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="8" y="40" width="48" height="4" fill="#1B6CA8"/>
+      <rect x="8" y="28" width="48" height="4" fill="#4DA3D6"/>
+      <rect x="8" y="16" width="48" height="4" fill="#1B6CA8"/>
+      <rect x="12" y="44" width="10" height="10" fill="#DCEEF7" rx="1"/>
+      <rect x="26" y="44" width="10" height="10" fill="#DCEEF7" rx="1"/>
+      <rect x="40" y="44" width="10" height="10" fill="#DCEEF7" rx="1"/>
+    </svg>
+    <!-- Caminhão -->
+    <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="10" y="34" width="38" height="16" fill="#4DA3D6" rx="2"/>
+      <rect x="48" y="30" width="10" height="10" fill="#1B6CA8" rx="2"/>
+      <circle cx="16" cy="52" r="4" fill="#0B3C5D"/>
+      <circle cx="40" cy="52" r="4" fill="#0B3C5D"/>
+      <path d="M10 34 L12 28 L46 28 L48 34 Z" fill="#1B6CA8"/>
+    </svg>
+    <!-- Etiqueta -->
+    <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="14" y="22" width="24" height="26" fill="#1B6CA8" rx="4"/>
+      <path d="M14 22 L30 14 L38 22 Z" fill="#4DA3D6"/>
+      <circle cx="26" cy="36" r="3" fill="#DCEEF7"/>
+      <line x1="20" y1="30" x2="32" y2="30" stroke="#fff" stroke-width="2"/>
+    </svg>
+    <!-- Gráfico -->
+    <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="12" y="42" width="6" height="12" fill="#4DA3D6"/>
+      <rect x="22" y="34" width="6" height="20" fill="#1B6CA8"/>
+      <rect x="32" y="28" width="6" height="26" fill="#0B3C5D"/>
+      <rect x="42" y="38" width="6" height="16" fill="#4DA3D6"/>
+      <line x1="10" y1="56" x2="50" y2="56" stroke="#DCEEF7" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <div class="cover-dados">
+    <p><strong>Título:</strong> A Importância da Gestão de Estoques nas Empresas</p>
+    <p><strong>Subtítulo:</strong> Como o controle de estoques influencia custos, vendas e resultados</p>
+    <p><strong>Nome:</strong> Richard Castro</p>
+    <p><strong>Disciplina:</strong> Administração</p>
+    <p><strong>Data:</strong> 10 de novembro de 2026</p>
+  </div>
+
+  <div class="particula" style="left:10%; top:25%; width:6px; height:6px;"></div>
+  <div class="particula" style="left:25%; top:60%; width:4px; height:4px;"></div>
+  <div class="particula" style="left:75%; top:20%; width:5px; height:5px;"></div>
+  <div class="particula" style="left:90%; top:75%; width:3px; height:3px;"></div>
+</div>
+
+<!-- ===================== SUMÁRIO ===================== -->
+<div class="secao">
+  <h1>Sumário</h1>
+  <div class="sumario">
+    <h2>Conteúdo</h2>
+    <ol>
+      <li><a href="#introducao">1. Introdução</a></li>
+      <li><a href="#oque-e">2. O que é gestão de estoques</a></li>
+      <li><a href="#importancia">3. Por que o estoque é importante</a></li>
+      <li><a href="#problemas">4. Principais problemas na gestão de estoques</a></li>
+      <li><a href="#metodos">5. Métodos e ferramentas de controle</a></li>
+      <li><a href="#dados">6. Dados e gráficos</a></li>
+      <li><a href="#impactos">7. Impactos no resultado da empresa</a></li>
+      <li><a href="#boas-praticas">8. Boas práticas de gestão</a></li>
+      <li><a href="#conclusao">9. Conclusão</a></li>
+      <li><a href="#fontes">10. Fontes e referências</a></li>
+    </ol>
+  </div>
+</div>
+
+<!-- ===================== INTRODUÇÃO ===================== -->
+<div class="secao" id="introducao">
+  <h1>Introdução</h1>
+  <p>A gestão de estoques é uma área da Administração responsável por controlar a entrada, a saída, a quantidade e o valor dos produtos ou materiais que uma empresa possui. Ela é essencial para garantir que a empresa tenha produtos disponíveis para vender, sem acumular itens em excesso.</p>
+  <p>Um estoque bem administrado ajuda a evitar prejuízos, reduz custos, melhora o atendimento ao cliente e contribui para uma melhor organização do fluxo de caixa. Por outro lado, erros no controle podem causar falta de produtos, compras desnecessárias, perdas, atrasos nas entregas e dificuldades financeiras.</p>
+  <div class="card destaque">
+    <h4>Por que este tema é relevante?</h4>
+    <p>O controle eficiente de estoques influencia diretamente os custos, as vendas, o fluxo de caixa e a satisfação dos clientes de qualquer empresa.</p>
+  </div>
+</div>
+
+<!-- ===================== O QUE É ===================== -->
+<div class="secao" id="oque-e">
+  <h1>O que é gestão de estoques</h1>
+  <div class="card">
+    <h4>Definição</h4>
+    <p><strong>Gestão de estoques</strong> é o conjunto de práticas usadas para controlar os produtos, materiais e mercadorias de uma empresa, garantindo que exista a quantidade certa, no momento certo e com o menor custo possível.</p>
+  </div>
+  <p>A gestão de estoques envolve:</p>
+  <ul>
+    <li>Registrar entradas e saídas de produtos.</li>
+    <li>Controlar a quantidade disponível.</li>
+    <li>Acompanhar o valor dos produtos armazenados.</li>
+    <li>Definir estoque mínimo e máximo.</li>
+    <li>Realizar inventários periódicos.</li>
+    <li>Identificar produtos parados, vencidos ou danificados.</li>
+    <li>Planejar compras de acordo com a demanda.</li>
+  </ul>
+</div>
+
+<!-- ===================== POR QUE É IMPORTANTE ===================== -->
+<div class="secao" id="importancia">
+  <h1>Por que o estoque é importante</h1>
+  <p>O estoque é importante porque representa dinheiro investido pela empresa. Produtos guardados por muito tempo podem ocupar espaço, perder valor, vencer ou se tornar obsoletos. Ao mesmo tempo, a falta de estoque pode fazer a empresa perder vendas e clientes.</p>
+  <div class="card destaque">
+    <h4>Equilíbrio é essencial</h4>
+    <p>Um estoque muito alto pode aumentar custos e gerar perdas, enquanto um estoque muito baixo pode impedir vendas e prejudicar a imagem da empresa.</p>
+  </div>
+</div>
+
+<!-- ===================== PRINCIPAIS PROBLEMAS ===================== -->
+<div class="secao" id="problemas">
+  <h1>Principais problemas na gestão de estoques</h1>
+  <ul>
+    <li>Falta de registro das entradas e saídas.</li>
+    <li>Compras em excesso ou em momentos inadequados.</li>
+    <li>Produtos vencidos, danificados ou obsoletos.</li>
+    <li>Falta de produtos para atender os clientes.</li>
+    <li>Erros de contagem e divergências no inventário.</li>
+    <li>Falta de planejamento de compras.</li>
+    <li>Uso inadequado do capital de giro.</li>
+  </ul>
+  <p>Comprar produtos em excesso pode imobilizar dinheiro que a empresa poderia usar em outras áreas. Já a falta de estoque pode causar perda de vendas, atraso nas entregas e insatisfação dos clientes.</p>
+</div>
+
+<!-- ===================== MÉTODOS ===================== -->
+<div class="secao" id="metodos">
+  <h1>Métodos e ferramentas de controle</h1>
+  <ul>
+    <li><strong>Inventário físico:</strong> conferência entre o estoque registrado e os produtos que existem de fato.</li>
+    <li><strong>Ficha de estoque:</strong> registro de quantidade, custo unitário e custo total dos produtos.</li>
+    <li><strong>Estoque mínimo:</strong> quantidade mínima necessária para não faltar produto.</li>
+    <li><strong>Estoque máximo:</strong> limite para evitar compras excessivas.</li>
+    <li><strong>Curva ABC:</strong> método que classifica produtos por importância e valor.</li>
+    <li><strong>PEPS:</strong> significa “primeiro a entrar, primeiro a sair”; é útil para produtos com validade.</li>
+    <li><strong>Sistemas de gestão:</strong> softwares que ajudam a registrar vendas, compras e movimentações.</li>
+  </ul>
+  <div class="card">
+    <h4>Inventário físico</h4>
+    <p>O inventário físico permite comparar o que está registrado no sistema com o que realmente existe na empresa. Essa conferência ajuda a identificar perdas, erros de registro, produtos vencidos e diferenças no estoque.</p>
+  </div>
+</div>
+
+<!-- ===================== DADOS E GRÁFICOS ===================== -->
+<div class="secao-full" id="dados">
+  <h1>Dados e gráficos</h1>
+  <p>Os dados abaixo foram obtidos em materiais do Sebrae e em pesquisas acadêmicas sobre gestão de estoques, capital de giro e desempenho empresarial.</p>
+
+  <table>
+    <thead>
+      <tr><th>Indicador</th><th>Dado</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Gestores que não realizam controle do giro de estoques</td><td>30%</td></tr>
+      <tr><td>Gestores que revisam o giro de estoques com frequência</td><td>42%</td></tr>
+      <tr><td>Empresas que não conseguem manter os níveis de estoque desejados</td><td>52%</td></tr>
+      <tr><td>Empresas com dificuldade em manter a produção nos volumes desejados</td><td>60%</td></tr>
+      <tr><td>Empresas com dificuldade em cumprir prazos de pedidos</td><td>52%</td></tr>
+      <tr><td>Empresas que deixam de obter descontos de fornecedores por falta de capital de giro</td><td>94%</td></tr>
+      <tr><td>Empresas com dificuldades relacionadas à insuficiência de capital de giro</td><td>38%</td></tr>
+      <tr><td>Respondentes que apontaram perda de vendas por falta de produtos como impacto relevante</td><td>82,2%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cards-grid">
+    <div class="card-mini"><div class="numero">30%</div><div class="rotulo">Não realizam controle do giro de estoques</div></div>
+    <div class="card-mini"><div class="numero">52%</div><div class="rotulo">Não conseguem manter níveis de estoque desejados</div></div>
+    <div class="card-mini"><div class="numero">60%</div><div class="rotulo">Dificuldade em manter a produção nos volumes desejados</div></div>
+    <div class="card-mini"><div class="numero">82,2%</div><div class="rotulo">Perda de vendas por falta de produtos</div></div>
+    <div class="card-mini"><div class="numero">94%</div><div class="rotulo">Deixam de obter descontos por falta de capital de giro</div></div>
+  </div>
+
+  <div class="grafico">
+    <h3>Gráfico 1 — Como os gestores realizam o controle do giro de estoques</h3>
+    <svg viewBox="0 0 320 320" width="320" height="320">
+      <!-- Centro (160,160), raio 80 -->
+      <!-- Slice 30% #0B3C5D: -90° a 18° -->
+      <path d="M160,160 L160,80 A80,80 0 0 1 236.1,184.7 Z" fill="#0B3C5D"/>
+      <!-- Slice 28% #1B6CA8: 18° a 118.8° -->
+      <path d="M160,160 L236.1,184.7 A80,80 0 0 1 131.4,230.1 Z" fill="#1B6CA8"/>
+      <!-- Slice 42% #4DA3D6: 118.8° a 270° -->
+      <path d="M160,160 L131.4,230.1 A80,80 0 0 1 160,240 Z" fill="#4DA3D6"/>
+      <!-- Centro branco -->
+      <circle cx="160" cy="160" r="40" fill="#F4F7FA"/>
+      <!-- Labels -->
+      <text x="230" y="140" font-size="12" fill="#1F2937" font-family="Inter">Não realizam<br/>controle (30%)</text>
+      <text x="245" y="210" font-size="12" fill="#1F2937" font-family="Inter">Revisam algumas<br/>vezes (28%)</text>
+      <text x="95" y="225" font-size="12" fill="#1F2937" font-family="Inter">Revisam com<br/>frequência (42%)</text>
+    </svg>
+    <div class="legenda">Embora parte dos gestores faça revisões frequentes, 30% ainda não realizam esse tipo de controle. Isso pode dificultar a identificação de produtos parados, excesso de mercadorias e itens com baixo giro.</div>
+  </div>
+
+  <div class="grafico">
+    <h3>Gráfico 2 — Principais dificuldades relacionadas à gestão de estoques e capital de giro</h3>
+    <svg viewBox="0 0 700 400" width="700" height="400">
+      <rect x="0" y="0" width="700" height="400" fill="#F4F7FA"/>
+      <line x1="200" y1="340" x2="200" y2="40" stroke="#999" stroke-width="1"/>
+      <line x1="200" y1="340" x2="660" y2="340" stroke="#999" stroke-width="1"/>
+      <!-- 94% -->
+      <rect x="200" y="60" width="451" height="40" fill="#0B3C5D"/>
+      <text x="195" y="82" text-anchor="end" font-size="11" fill="#1F2937" font-family="Inter">Descontos de fornecedores</text>
+      <text x="664" y="82" fill="#fff" font-size="12" font-weight="700" font-family="Inter">94%</text>
+      <!-- 60% -->
+      <rect x="200" y="120" width="288" height="40" fill="#1B6CA8"/>
+      <text x="195" y="142" text-anchor="end" font-size="11" fill="#1F2937" font-family="Inter">Produção nos volumes desejados</text>
+      <text x="501" y="142" fill="#fff" font-size="12" font-weight="700" font-family="Inter">60%</text>
+      <!-- 52% -->
+      <rect x="200" y="180" width="250" height="40" fill="#4DA3D6"/>
+      <text x="195" y="202" text-anchor="end" font-size="11" fill="#1F2937" font-family="Inter">Níveis de estoque desejados</text>
+      <text x="463" y="202" fill="#fff" font-size="12" font-weight="700" font-family="Inter">52%</text>
+      <!-- 52% -->
+      <rect x="200" y="240" width="250" height="40" fill="#7FB6E2"/>
+      <text x="195" y="262" text-anchor="end" font-size="11" fill="#1F2937" font-family="Inter">Cumprir prazos de pedidos</text>
+      <text x="463" y="262" fill="#1F2937" font-size="12" font-weight="700" font-family="Inter">52%</text>
+      <!-- 38% -->
+      <rect x="200" y="300" width="182" height="40" fill="#A9D6F2"/>
+      <text x="195" y="322" text-anchor="end" font-size="11" fill="#1F2937" font-family="Inter">Insuficiência de capital de giro</text>
+      <text x="395" y="322" fill="#1F2937" font-size="12" font-weight="700" font-family="Inter">38%</text>
+    </svg>
+    <div class="legenda">A falta de capital de giro afeta diretamente a capacidade da empresa de negociar com fornecedores, manter estoques adequados e cumprir prazos. Isso pode reduzir a competitividade e prejudicar o atendimento aos clientes.</div>
+  </div>
+
+  <div class="grafico">
+    <h3>Gráfico 3 — Impacto da falta de produtos nas vendas</h3>
+    <svg viewBox="0 0 500 400" width="500" height="400">
+      <rect x="0" y="0" width="500" height="400" fill="#F4F7FA"/>
+      <line x1="80" y1="340" x2="80" y2="60" stroke="#999" stroke-width="1"/>
+      <line x1="80" y1="340" x2="460" y2="340" stroke="#999" stroke-width="1"/>
+      <!-- 82,2% -->
+      <rect x="120" y="100" width="100" height="240" fill="#0B3C5D"/>
+      <text x="170" y="355" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Perda de vendas</text>
+      <text x="170" y="88" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Inter">82,2%</text>
+      <!-- 17,8% -->
+      <rect x="240" y="260" width="100" height="80" fill="#DCEEF7"/>
+      <text x="290" y="355" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Sem esse problema</text>
+      <text x="290" y="248" text-anchor="middle" font-size="12" font-weight="700" fill="#1F2937" font-family="Inter">17,8%</text>
+      <text x="60" y="345" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">0%</text>
+      <text x="60" y="220" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">40%</text>
+      <text x="60" y="100" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">80%</text>
+      <text x="50" y="70" text-anchor="end" font-size="9" fill="#1F2937" font-family="Inter">%</text>
+    </svg>
+    <div class="legenda">A falta de produtos foi apontada como um impacto relevante por 82,2% dos respondentes. Quando o cliente não encontra o produto desejado, ele pode comprar em outra empresa, gerando prejuízo para o negócio.</div>
+  </div>
+
+  <div class="grafico">
+    <h3>Gráfico 4 — Exemplo: controle mensal de um produto</h3>
+    <svg viewBox="0 0 700 400" width="700" height="400">
+      <rect x="0" y="0" width="700" height="400" fill="#F4F7FA"/>
+      <line x1="80" y1="340" x2="80" y2="60" stroke="#999" stroke-width="1"/>
+      <line x1="80" y1="340" x2="660" y2="340" stroke="#999" stroke-width="1"/>
+      <!-- Eixo Y -->
+      <text x="60" y="345" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">0</text>
+      <text x="60" y="265" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">25</text>
+      <text x="60" y="190" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">50</text>
+      <text x="60" y="115" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">75</text>
+      <text x="60" y="60" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">100</text>
+      <!-- Grupos de barras -->
+      <!-- Janeiro -->
+      <g transform="translate(120,0)">
+        <rect x="0" y="90" width="18" height="250" fill="#0B3C5D"/> <!-- 100 -->
+        <rect x="22" y="215" width="18" height="125" fill="#1B6CA8"/> <!-- 50 -->
+        <rect x="44" y="140" width="18" height="200" fill="#4DA3D6"/> <!-- 80 -->
+        <rect x="66" y="165" width="18" height="175" fill="#DCEEF7"/> <!-- 70 -->
+      </g>
+      <text x="75" y="360" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Janeiro</text>
+      <!-- Fevereiro -->
+      <g transform="translate(230,0)">
+        <rect x="0" y="165" width="18" height="175" fill="#0B3C5D"/> <!-- 70 -->
+        <rect x="22" y="240" width="18" height="100" fill="#1B6CA8"/> <!-- 40 -->
+        <rect x="44" y="190" width="18" height="150" fill="#4DA3D6"/> <!-- 60 -->
+        <rect x="66" y="215" width="18" height="125" fill="#DCEEF7"/> <!-- 50 -->
+      </g>
+      <text x="185" y="360" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Fevereiro</text>
+      <!-- Março -->
+      <g transform="translate(340,0)">
+        <rect x="0" y="215" width="18" height="125" fill="#0B3C5D"/> <!-- 50 -->
+        <rect x="22" y="190" width="18" height="150" fill="#1B6CA8"/> <!-- 60 -->
+        <rect x="44" y="227" width="18" height="112" fill="#4DA3D6"/> <!-- 45 -->
+        <rect x="66" y="165" width="18" height="175" fill="#DCEEF7"/> <!-- 65 -->
+      </g>
+      <text x="295" y="360" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Março</text>
+      <!-- Abril -->
+      <g transform="translate(450,0)">
+        <rect x="0" y="190" width="18" height="150" fill="#0B3C5D"/> <!-- 65 -->
+        <rect x="22" y="265" width="18" height="75" fill="#1B6CA8"/> <!-- 30 -->
+        <rect x="44" y="140" width="18" height="200" fill="#4DA3D6"/> <!-- 70 -->
+        <rect x="66" y="265" width="18" height="75" fill="#DCEEF7"/> <!-- 25 -->
+      </g>
+      <text x="405" y="360" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Abril</text>
+    </svg>
+    <div class="legenda">Esse exemplo mostra a importância de registrar todas as movimentações do estoque. Sem esse controle, a empresa pode comprar mais do que precisa ou ficar sem produtos para atender os clientes.</div>
+  </div>
+</div>
+
+<!-- ===================== IMPACTOS ===================== -->
+<div class="secao" id="impactos">
+  <h1>Impactos no resultado da empresa</h1>
+  <p>Uma má gestão de estoques pode gerar as seguintes consequências:</p>
+  <ul>
+    <li>Perda de vendas e de clientes.</li>
+    <li>Aumento de custos com armazenamento.</li>
+    <li>Produtos vencidos ou obsoletos.</li>
+    <li>Dificuldade no fluxo de caixa.</li>
+    <li>Atraso nas entregas e nos pedidos.</li>
+    <li>Menor poder de negociação com fornecedores.</li>
+    <li>Redução da lucratividade da empresa.</li>
+  </ul>
+  <div class="card">
+    <h4>Prejuízos financeiros e operacionais</h4>
+    <p>Quando o estoque não é bem administrado, a empresa pode ter prejuízos financeiros e operacionais. O dinheiro parado em produtos excessivos deixa de ser usado para investimentos, pagamento de contas ou aproveitamento de oportunidades de compra.</p>
+  </div>
+</div>
+
+<!-- ===================== BOAS PRÁTICAS ===================== -->
+<div class="secao" id="boas-praticas">
+  <h1>Boas práticas de gestão</h1>
+  <ul>
+    <li>Registrar todas as entradas e saídas de produtos.</li>
+    <li>Realizar inventários periódicos.</li>
+    <li>Definir estoque mínimo e máximo.</li>
+    <li>Priorizar os produtos mais vendidos.</li>
+    <li>Negociar prazos e condições com fornecedores.</li>
+    <li>Treinar os funcionários responsáveis pelo estoque.</li>
+    <li>Utilizar sistemas de gestão e planilhas de controle.</li>
+    <li>Identificar e eliminar produtos parados ou sem giro.</li>
+  </ul>
+  <div class="card">
+    <h4>Organização e acompanhamento constante</h4>
+    <p>Uma boa gestão de estoques depende de organização, informação e acompanhamento constante. Treinar os funcionários, usar dados para tomar decisões e revisar os níveis de estoque são práticas importantes para reduzir perdas e melhorar os resultados.</p>
+  </div>
+</div>
+
+<!-- ===================== TABELA COMPARATIVA ===================== -->
+<div class="secao">
+  <h2>Tabela comparativa: Estoque alto x estoque baixo</h2>
+  <table>
+    <thead>
+      <tr><th>Situação</th><th>Estoque alto</th><th>Estoque baixo</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Capital de giro</td><td>Dinheiro parado em produtos</td><td>Menos dinheiro imobilizado</td></tr>
+      <tr><td>Custos</td><td>Maiores custos de armazenamento</td><td>Menores custos de armazenamento</td></tr>
+      <tr><td>Vendas</td><td>Produtos disponíveis, mas risco de perdas</td><td>Risco de perder vendas</td></tr>
+      <tr><td>Clientes</td><td>Atendimento mais rápido</td><td>Possível insatisfação</td></tr>
+      <tr><td>Risco principal</td><td>Produtos vencidos, obsoletos ou parados</td><td>Falta de produtos e atrasos</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===================== CONCLUSÃO ===================== -->
+<div class="secao" id="conclusao">
+  <h1>Conclusão</h1>
+  <p>A gestão de estoques é uma função essencial da Administração, pois influencia diretamente os custos, as vendas, o fluxo de caixa e a satisfação dos clientes. Um estoque bem controlado permite que a empresa tenha os produtos necessários sem comprometer recursos financeiros em excesso.</p>
+  <p>Os dados mostram que muitas empresas enfrentam dificuldades para manter níveis adequados de estoque, cumprir prazos e negociar com fornecedores. Por isso, o uso de ferramentas de controle, inventários regulares, planejamento de compras e treinamento dos funcionários é fundamental para reduzir perdas e melhorar o desempenho do negócio.</p>
+  <div class="card destaque">
+    <h4>Mensagem final</h4>
+    <p>Estoque bem gerido significa custos menores, clientes mais satisfeitos e melhores resultados para a empresa.</p>
+  </div>
+</div>
+
+<!-- ===================== FONTES ===================== -->
+<div class="secao" id="fontes">
+  <h1>Fontes e referências</h1>
+  <p>Os dados utilizados neste trabalho foram obtidos em materiais do Sebrae e em pesquisas acadêmicas sobre gestão de estoques, capital de giro e desempenho empresarial.</p>
+  <p>O Sebrae foi uma das principais fontes consultadas, pois oferece orientações práticas sobre o controle de estoque, o registro de entradas e saídas, o inventário físico e a organização das mercadorias.</p>
+  <p>Os percentuais relacionados ao controle do giro de estoques, às dificuldades para manter os níveis desejados de estoque, ao cumprimento de prazos e à falta de capital de giro foram retirados de um artigo científico sobre fatores que prejudicam a gestão de capital de giro nas empresas.</p>
+  <p>O dado de que 82,2% dos respondentes consideraram a falta de produtos um impacto relevante para a perda de vendas foi obtido em um trabalho acadêmico sobre gestão de estoques.</p>
+  <p>Essas fontes foram escolhidas porque apresentam informações relacionadas à Administração, à gestão de estoques e ao funcionamento das empresas.</p>
+
+  <h2>Tabela de fontes</h2>
+  <table>
+    <thead>
+      <tr><th>Fonte</th><th>Tipo de fonte</th><th>Informação utilizada</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Sebrae — “Como realizar o controle de estoque de mercadorias”</td><td>Material educativo</td><td>Controle de estoque, registro de entradas e saídas, inventário e custo dos produtos.</td></tr>
+      <tr><td>Sebrae Paraná — “Princípios básicos para uma gestão de estoque em pequenas empresas”</td><td>Artigo educativo</td><td>Princípios básicos de gestão de estoques, método PEPS e controle de mercadorias.</td></tr>
+      <tr><td>Sebrae — “Gestão de Estoque na Prática”</td><td>Material educativo</td><td>Gestão de estoques para microempresas e pequenas empresas.</td></tr>
+      <tr><td>Artigo científico sobre capital de giro</td><td>Pesquisa acadêmica</td><td>Percentuais sobre controle do giro de estoques, níveis de estoque, prazos e capital de giro.</td></tr>
+      <tr><td>Trabalho acadêmico sobre estoques e vendas</td><td>Pesquisa acadêmica</td><td>Impacto da falta de produtos na perda de vendas.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer-note">
+    Richard Castro — Disciplina: Administração | Fontes: Sebrae e pesquisas acadêmicas sobre gestão de estoques e capital de giro.
+  </div>
+</div>
+
+</body>
+</html>
