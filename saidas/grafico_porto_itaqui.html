@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang='pt-BR'>
+<head><meta charset='utf-8'><title>Gráficos - Porto do Itaqui</title></head>
+<body style='font-family:Arial,sans-serif;max-width:900px;margin:40px auto;background:#f7f5fa;color:#333;'>
+<h1 style='color:#4a1c3b;border-bottom:3px solid #c48ecc;padding-bottom:8px;'>Porto do Itaqui - Demora no embarque e desembarque de cargas</h1>
+<p>Dados sintéticos gerados por simulação de filas. <a href='dados\porto_itaqui_movimentacao.csv'>Ver base completa</a>.</p>
+<h2 style='color:#4a1c3b;'>Tempo total médio por tipo de carga</h2>
+<svg width="700" height="300" xmlns="http://www.w3.org/2000/svg">
+<rect width="100%%" height="100%%" fill="#ffffff"/>
+<text x="10" y="24" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4a1c3b">Tempo total médio por tipo de carga (horas)</text>
+<rect x="240" y="50.0" width="432.4811430931897" height="52.0" fill="#8e44ad" rx="2"/>
+<text x="230" y="84.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Carga geral</text>
+<text x="677.4811430931898" y="84.0" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">524.28 h</text>
+<rect x="240" y="110.0" width="406.3025874021983" height="52.0" fill="#8e44ad" rx="2"/>
+<text x="230" y="144.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Contêineres</text>
+<text x="651.3025874021982" y="144.0" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">492.55 h</text>
+<rect x="240" y="170.0" width="440.0" height="52.0" fill="#8e44ad" rx="2"/>
+<text x="230" y="204.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Granel líquido</text>
+<text x="685.0" y="204.0" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">533.40 h</text>
+<rect x="240" y="230.0" width="346.202106717875" height="52.0" fill="#8e44ad" rx="2"/>
+<text x="230" y="264.0" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Granel sólido</text>
+<text x="591.202106717875" y="264.0" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">419.69 h</text>
+</svg>
+<p><small>Inclui espera por berço, operação e atrasos extras.</small></p>
+<h2 style='color:#4a1c3b;'>Espera média por berço por tipo de carga</h2>
+<svg width="700" height="350" xmlns="http://www.w3.org/2000/svg">
+<rect width="100%%" height="100%%" fill="#ffffff"/>
+<text x="350" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4a1c3b">Espera média por berço (horas)</text>
+<rect x="75.0" y="58.48751648743894" width="120.0" height="241.51248351256106" fill="#2e86c1" rx="2"/>
+<text x="135.0" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Carga geral</text>
+<text x="135.0" y="52.48751648743894" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#2e86c1">506.7</text>
+<rect x="225.0" y="73.35651093830327" width="120.0" height="226.64348906169673" fill="#2e86c1" rx="2"/>
+<text x="285.0" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Contêineres</text>
+<text x="285.0" y="67.35651093830327" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#2e86c1">475.5</text>
+<rect x="375.0" y="50.0" width="120.0" height="250.0" fill="#2e86c1" rx="2"/>
+<text x="435.0" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Granel líquido</text>
+<text x="435.0" y="44.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#2e86c1">524.5</text>
+<rect x="525.0" y="106.61010324945732" width="120.0" height="193.38989675054268" fill="#2e86c1" rx="2"/>
+<text x="585.0" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Granel sólido</text>
+<text x="585.0" y="100.61010324945732" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#2e86c1">405.8</text>
+<text x="40" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b" transform="rotate(-90 40,175)">Tempo (horas)</text>
+</svg>
+<p><small>Tempo que o navio aguarda na fila antes de atracar.</small></p>
+<h2 style='color:#4a1c3b;'>Atraso médio por causa</h2>
+<svg width="700" height="350" xmlns="http://www.w3.org/2000/svg">
+<rect width="100%%" height="100%%" fill="#ffffff"/>
+<text x="350" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#4a1c3b">Atraso médio por causa (horas por navio)</text>
+<rect x="75.0" y="50.0" width="120.0" height="250.0" fill="#2e86c1" rx="2"/>
+<text x="135.0" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Clima</text>
+<text x="135.0" y="44.0" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#2e86c1">0.4</text>
+<rect x="225.0" y="167.90763430725733" width="120.0" height="132.09236569274267" fill="#2e86c1" rx="2"/>
+<text x="285.0" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Equipamento</text>
+<text x="285.0" y="161.90763430725733" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#2e86c1">0.2</text>
+<rect x="375.0" y="245.99434495758717" width="120.0" height="54.00565504241282" fill="#2e86c1" rx="2"/>
+<text x="435.0" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Mão de obra</text>
+<text x="435.0" y="239.99434495758717" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#2e86c1">0.1</text>
+<rect x="525.0" y="105.56079170593782" width="120.0" height="194.43920829406218" fill="#2e86c1" rx="2"/>
+<text x="585.0" y="315" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b">Documentação</text>
+<text x="585.0" y="99.56079170593782" text-anchor="middle" font-family="Arial, sans-serif" font-size="11" fill="#2e86c1">0.3</text>
+<text x="40" y="175" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#4a1c3b" transform="rotate(-90 40,175)">Tempo (horas)</text>
+</svg>
+<p><small>Tempo extra somado além do tempo planejado de operação.</small></p>
+<h2 style='color:#4a1c3b;'>Relatório escrito</h2>
+<p><a href='saidas\relatorio_porto_itaqui.md'>Abrir relatorio_porto_itaqui.md</a></p>
+</body></html>

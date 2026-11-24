@@ -7,7 +7,6 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Inter:wght@400;600&display=swap');
 
-  /* ---------- Paleta ---------- */
   :root {
     --azul-escuro: #0B3C5D;
     --azul-medio: #1B6CA8;
@@ -19,10 +18,9 @@
     --cinza-texto: #6b7a8d;
   }
 
-  /* ---------- Página A4 ---------- */
   @page {
     size: A4;
-    margin: 1.8cm 1.6cm 2.1cm 1.6cm;
+    margin: 1.7cm 1.5cm 2.2cm 1.5cm;
     @bottom-center {
       content: "Richard Castro — Disciplina: Administração";
       font-family: 'Inter', sans-serif;
@@ -33,6 +31,10 @@
       width: 100%;
       text-align: center;
     }
+  }
+
+  @page :first {
+    @bottom-center { content: none; }
   }
 
   * { box-sizing: border-box; }
@@ -59,15 +61,14 @@
   p { margin: 0.6rem 0; text-align: justify; }
   ul, ol { margin: 0.6rem 0 0.6rem 1.4rem; padding: 0; }
   li { margin-bottom: 0.45rem; text-align: justify; }
-
   strong { color: var(--azul-escuro); }
 
   /* ---------- Capa ---------- */
   .cover {
     background: var(--azul-escuro);
     color: var(--branco);
-    padding: 2.6cm 2cm;
-    min-height: 25.5cm;
+    padding: 2.2cm 2cm;
+    min-height: 26.3cm;
     page-break-after: always;
     position: relative;
     overflow: hidden;
@@ -79,44 +80,75 @@
   .cover::before {
     content: "";
     position: absolute;
-    top: -10%; right: -10%;
-    width: 380px; height: 380px;
-    background: radial-gradient(circle, rgba(27,108,168,0.18) 0%, transparent 60%);
+    top: -8%; right: -8%;
+    width: 420px; height: 420px;
+    background: radial-gradient(circle, rgba(27,108,168,0.20) 0%, transparent 55%);
     border-radius: 50%;
+    z-index: 0;
   }
 
-  .cover h1 { font-size: 2.2rem; line-height: 1.25; color: var(--branco); margin: 0.5rem 0 0.6rem; border: none; }
-  .cover h2 { font-size: 1.15rem; color: var(--azul-claro); font-weight: 400; border: none; margin-bottom: 2.5rem; }
+  .cover * { position: relative; z-index: 1; }
 
-  .cover-icons {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
+  .cover-top { text-align: center; margin-top: 2.5rem; }
+
+  .cover-titulo {
+    font-size: 2.3rem;
+    line-height: 1.25;
+    color: var(--branco);
+    margin: 0.6rem 0 0.8rem;
+    font-weight: 700;
   }
 
-  .icon-svg {
-    width: 48px; height: 48px;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  .cover-subtitulo {
+    font-size: 1.15rem;
+    color: var(--azul-claro);
+    font-weight: 400;
+    margin-bottom: 2.8rem;
+    line-height: 1.5;
+    max-width: 16cm;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .cover-dados {
-    background: rgba(255,255,255,0.12);
-    backdrop-filter: blur(4px);
-    padding: 1.6rem;
-    border-radius: 10px;
-    border: 1pt solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.10);
+    backdrop-filter: blur(5px);
+    padding: 1.8rem 1.6rem;
+    border-radius: 12px;
+    border: 1pt solid rgba(255,255,255,0.22);
+    max-width: 17cm;
+    margin: 0 auto 2rem auto;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
   }
 
-  .cover-dados p { margin: 0.4rem 0; color: var(--branco); font-size: 1rem; }
+  .cover-dados p { margin: 0.45rem 0; color: var(--branco); font-size: 1.05rem; }
   .cover-dados strong { color: var(--azul-claro); }
+
+  .cover-icons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .icon-svg {
+    width: 52px; height: 52px;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.35));
+  }
+
+  .cover-bottom {
+    text-align: center;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 1rem;
+  }
 
   .particula {
     position: absolute;
-    background: rgba(77,163,214,0.25);
+    background: rgba(77,163,214,0.28);
     border-radius: 50%;
-    opacity: 0.5;
+    opacity: 0.6;
   }
 
   /* ---------- Sumário ---------- */
@@ -167,7 +199,7 @@
     margin: 1rem 0;
   }
   .card-mini {
-    flex: 1 1 170px;
+    flex: 1 1 160px;
     background: var(--azul-muito-claro);
     border-radius: 8px;
     padding: 1rem;
@@ -175,10 +207,11 @@
     page-break-inside: avoid;
   }
   .card-mini .numero {
-    font-size: 1.7rem; font-weight: 700; color: var(--azul-escuro);
+    font-size: 1.8rem; font-weight: 700; color: var(--azul-escuro);
     font-family: 'Poppins', sans-serif;
+    line-height: 1;
   }
-  .card-mini .rotulo { font-size: 0.85rem; color: #4a5a6a; margin-top: 0.25rem; }
+  .card-mini .rotulo { font-size: 0.82rem; color: #4a5a6a; margin-top: 0.3rem; line-height: 1.3; }
 
   /* ---------- Gráficos ---------- */
   .grafico {
@@ -190,11 +223,12 @@
   .legenda {
     font-size: 0.85rem;
     color: #5a6a7a;
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
     text-align: center;
     max-width: 720px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.4;
   }
 
   table {
@@ -202,7 +236,6 @@
     border-collapse: collapse;
     margin: 1rem 0;
     font-size: 0.9rem;
-    page-break-inside: auto;
   }
   th, td {
     border: 0.5pt solid #c9d6e2;
@@ -216,10 +249,7 @@
     margin-bottom: 2.2rem;
     page-break-inside: avoid;
   }
-
-  .secao-full {
-    margin-bottom: 2.2rem;
-  }
+  .secao-full { margin-bottom: 2.2rem; }
 
   .footer-note {
     font-size: 8pt;
@@ -239,68 +269,74 @@
     font-size: 0.8rem;
     margin-right: 0.4rem;
   }
-
-  .icon { width: 18px; height: 18px; vertical-align: middle; margin-right: 6px; }
 </style>
 </head>
 <body>
 
 <!-- ===================== CAPA ===================== -->
 <div class="cover">
-  <div class="cover-icons">
-    <!-- Caixa -->
-    <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="10" y="26" width="44" height="26" fill="#4DA3D6" rx="3"/>
-      <rect x="14" y="22" width="36" height="8" fill="#1B6CA8" rx="2"/>
-      <line x1="32" y1="26" x2="32" y2="52" stroke="#0B3C5D" stroke-width="2"/>
-      <line x1="10" y1="39" x2="54" y2="39" stroke="#0B3C5D" stroke-width="2"/>
-    </svg>
-    <!-- Prateleira -->
-    <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="8" y="40" width="48" height="4" fill="#1B6CA8"/>
-      <rect x="8" y="28" width="48" height="4" fill="#4DA3D6"/>
-      <rect x="8" y="16" width="48" height="4" fill="#1B6CA8"/>
-      <rect x="12" y="44" width="10" height="10" fill="#DCEEF7" rx="1"/>
-      <rect x="26" y="44" width="10" height="10" fill="#DCEEF7" rx="1"/>
-      <rect x="40" y="44" width="10" height="10" fill="#DCEEF7" rx="1"/>
-    </svg>
-    <!-- Caminhão -->
-    <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="10" y="34" width="38" height="16" fill="#4DA3D6" rx="2"/>
-      <rect x="48" y="30" width="10" height="10" fill="#1B6CA8" rx="2"/>
-      <circle cx="16" cy="52" r="4" fill="#0B3C5D"/>
-      <circle cx="40" cy="52" r="4" fill="#0B3C5D"/>
-      <path d="M10 34 L12 28 L46 28 L48 34 Z" fill="#1B6CA8"/>
-    </svg>
-    <!-- Etiqueta -->
-    <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="14" y="22" width="24" height="26" fill="#1B6CA8" rx="4"/>
-      <path d="M14 22 L30 14 L38 22 Z" fill="#4DA3D6"/>
-      <circle cx="26" cy="36" r="3" fill="#DCEEF7"/>
-      <line x1="20" y1="30" x2="32" y2="30" stroke="#fff" stroke-width="2"/>
-    </svg>
-    <!-- Gráfico -->
-    <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="12" y="42" width="6" height="12" fill="#4DA3D6"/>
-      <rect x="22" y="34" width="6" height="20" fill="#1B6CA8"/>
-      <rect x="32" y="28" width="6" height="26" fill="#0B3C5D"/>
-      <rect x="42" y="38" width="6" height="16" fill="#4DA3D6"/>
-      <line x1="10" y1="56" x2="50" y2="56" stroke="#DCEEF7" stroke-width="2"/>
-    </svg>
+  <div class="cover-top">
+    <div class="cover-icons">
+      <!-- Caixa -->
+      <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="26" width="44" height="26" fill="#4DA3D6" rx="3"/>
+        <rect x="14" y="22" width="36" height="8" fill="#1B6CA8" rx="2"/>
+        <line x1="32" y1="26" x2="32" y2="52" stroke="#0B3C5D" stroke-width="2"/>
+        <line x1="10" y1="39" x2="54" y2="39" stroke="#0B3C5D" stroke-width="2"/>
+      </svg>
+      <!-- Prateleira -->
+      <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="40" width="48" height="4" fill="#1B6CA8"/>
+        <rect x="8" y="28" width="48" height="4" fill="#4DA3D6"/>
+        <rect x="8" y="16" width="48" height="4" fill="#1B6CA8"/>
+        <rect x="12" y="44" width="10" height="10" fill="#DCEEF7" rx="1"/>
+        <rect x="26" y="44" width="10" height="10" fill="#DCEEF7" rx="1"/>
+        <rect x="40" y="44" width="10" height="10" fill="#DCEEF7" rx="1"/>
+      </svg>
+      <!-- Caminhão -->
+      <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="10" y="34" width="38" height="16" fill="#4DA3D6" rx="2"/>
+        <rect x="48" y="30" width="10" height="10" fill="#1B6CA8" rx="2"/>
+        <circle cx="16" cy="52" r="4" fill="#0B3C5D"/>
+        <circle cx="40" cy="52" r="4" fill="#0B3C5D"/>
+        <path d="M10 34 L12 28 L46 28 L48 34 Z" fill="#1B6CA8"/>
+      </svg>
+      <!-- Etiqueta -->
+      <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="14" y="22" width="24" height="26" fill="#1B6CA8" rx="4"/>
+        <path d="M14 22 L30 14 L38 22 Z" fill="#4DA3D6"/>
+        <circle cx="26" cy="36" r="3" fill="#DCEEF7"/>
+        <line x1="20" y1="30" x2="32" y2="30" stroke="#fff" stroke-width="2"/>
+      </svg>
+      <!-- Gráfico de barras -->
+      <svg class="icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="12" y="42" width="6" height="12" fill="#4DA3D6"/>
+        <rect x="22" y="34" width="6" height="20" fill="#1B6CA8"/>
+        <rect x="32" y="28" width="6" height="26" fill="#0B3C5D"/>
+        <rect x="42" y="38" width="6" height="16" fill="#4DA3D6"/>
+        <line x1="10" y1="56" x2="50" y2="56" stroke="#DCEEF7" stroke-width="2"/>
+      </svg>
+    </div>
+
+    <div class="cover-dados">
+      <p><strong>Título:</strong> A Importância da Gestão de Estoques nas Empresas</p>
+      <p><strong>Subtítulo:</strong> Como o controle de estoques influencia custos, vendas e resultados</p>
+      <p><strong>Nome:</strong> Richard Castro</p>
+      <p><strong>Disciplina:</strong> Administração</p>
+      <p><strong>Data:</strong> 10 de novembro de 2026</p>
+    </div>
   </div>
 
-  <div class="cover-dados">
-    <p><strong>Título:</strong> A Importância da Gestão de Estoques nas Empresas</p>
-    <p><strong>Subtítulo:</strong> Como o controle de estoques influencia custos, vendas e resultados</p>
-    <p><strong>Nome:</strong> Richard Castro</p>
-    <p><strong>Disciplina:</strong> Administração</p>
-    <p><strong>Data:</strong> 10 de novembro de 2026</p>
+  <div class="cover-bottom">
+    Trabalho escolar — Gestão de Estoques<br>
+    Richard Castro
   </div>
 
-  <div class="particula" style="left:10%; top:25%; width:6px; height:6px;"></div>
-  <div class="particula" style="left:25%; top:60%; width:4px; height:4px;"></div>
-  <div class="particula" style="left:75%; top:20%; width:5px; height:5px;"></div>
-  <div class="particula" style="left:90%; top:75%; width:3px; height:3px;"></div>
+  <div class="particula" style="left:8%; top:18%; width:7px; height:7px;"></div>
+  <div class="particula" style="left:22%; top:62%; width:5px; height:5px;"></div>
+  <div class="particula" style="left:70%; top:25%; width:6px; height:6px;"></div>
+  <div class="particula" style="left:88%; top:70%; width:4px; height:4px;"></div>
+  <div class="particula" style="left:48%; top:82%; width:7px; height:7px;"></div>
 </div>
 
 <!-- ===================== SUMÁRIO ===================== -->
@@ -427,121 +463,124 @@
 
   <div class="grafico">
     <h3>Gráfico 1 — Como os gestores realizam o controle do giro de estoques</h3>
-    <svg viewBox="0 0 320 320" width="320" height="320">
-      <!-- Centro (160,160), raio 80 -->
-      <!-- Slice 30% #0B3C5D: -90° a 18° -->
-      <path d="M160,160 L160,80 A80,80 0 0 1 236.1,184.7 Z" fill="#0B3C5D"/>
-      <!-- Slice 28% #1B6CA8: 18° a 118.8° -->
-      <path d="M160,160 L236.1,184.7 A80,80 0 0 1 131.4,230.1 Z" fill="#1B6CA8"/>
-      <!-- Slice 42% #4DA3D6: 118.8° a 270° -->
-      <path d="M160,160 L131.4,230.1 A80,80 0 0 1 160,240 Z" fill="#4DA3D6"/>
-      <!-- Centro branco -->
-      <circle cx="160" cy="160" r="40" fill="#F4F7FA"/>
-      <!-- Labels -->
-      <text x="230" y="140" font-size="12" fill="#1F2937" font-family="Inter">Não realizam<br/>controle (30%)</text>
-      <text x="245" y="210" font-size="12" fill="#1F2937" font-family="Inter">Revisam algumas<br/>vezes (28%)</text>
-      <text x="95" y="225" font-size="12" fill="#1F2937" font-family="Inter">Revisam com<br/>frequência (42%)</text>
+    <svg viewBox="0 0 340 340" width="340" height="340" style="max-width: 100%; height: auto;">
+      <circle cx="170" cy="170" r="100" fill="#F4F7FA"/>
+      <!-- 30% -->
+      <path d="M170,170 L170,70 A100,100 0 0 1 258.6,198.6 Z" fill="#0B3C5D"/>
+      <!-- 28% -->
+      <path d="M170,170 L258.6,198.6 A100,100 0 0 1 147.7,241.7 Z" fill="#1B6CA8"/>
+      <!-- 42% -->
+      <path d="M170,170 L147.7,241.7 A100,100 0 0 1 170,270 Z" fill="#4DA3D6"/>
+      <circle cx="170" cy="170" r="48" fill="#F4F7FA"/>
+      <text x="170" y="170" text-anchor="middle" dy="0.3em" font-size="16" font-weight="700" fill="#0B3C5D" font-family="Poppins">100%</text>
+      <text x="270" y="150" font-size="11" fill="#0B3C5D" font-family="Inter">Não realizam (30%)</text>
+      <text x="285" y="215" font-size="11" fill="#1B6CA8" font-family="Inter">Revisam algumas vezes (28%)</text>
+      <text x="90" y="235" font-size="11" fill="#4DA3D6" font-family="Inter">Revisam com frequência (42%)</text>
     </svg>
     <div class="legenda">Embora parte dos gestores faça revisões frequentes, 30% ainda não realizam esse tipo de controle. Isso pode dificultar a identificação de produtos parados, excesso de mercadorias e itens com baixo giro.</div>
   </div>
 
   <div class="grafico">
     <h3>Gráfico 2 — Principais dificuldades relacionadas à gestão de estoques e capital de giro</h3>
-    <svg viewBox="0 0 700 400" width="700" height="400">
-      <rect x="0" y="0" width="700" height="400" fill="#F4F7FA"/>
-      <line x1="200" y1="340" x2="200" y2="40" stroke="#999" stroke-width="1"/>
-      <line x1="200" y1="340" x2="660" y2="340" stroke="#999" stroke-width="1"/>
+    <svg viewBox="0 0 700 360" width="700" height="360" style="max-width: 100%; height: auto;">
+      <rect x="0" y="0" width="700" height="360" fill="#F4F7FA"/>
+      <line x1="210" y1="300" x2="210" y2="50" stroke="#999" stroke-width="1"/>
+      <line x1="210" y1="300" x2="670" y2="300" stroke="#999" stroke-width="1"/>
       <!-- 94% -->
-      <rect x="200" y="60" width="451" height="40" fill="#0B3C5D"/>
-      <text x="195" y="82" text-anchor="end" font-size="11" fill="#1F2937" font-family="Inter">Descontos de fornecedores</text>
-      <text x="664" y="82" fill="#fff" font-size="12" font-weight="700" font-family="Inter">94%</text>
+      <rect x="210" y="60" width="432" height="36" fill="#0B3C5D"/>
+      <text x="205" y="80" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">Descontos de fornecedores</text>
+      <text x="655" y="80" fill="#fff" font-size="12" font-weight="700" font-family="Inter">94%</text>
       <!-- 60% -->
-      <rect x="200" y="120" width="288" height="40" fill="#1B6CA8"/>
-      <text x="195" y="142" text-anchor="end" font-size="11" fill="#1F2937" font-family="Inter">Produção nos volumes desejados</text>
-      <text x="501" y="142" fill="#fff" font-size="12" font-weight="700" font-family="Inter">60%</text>
+      <rect x="210" y="114" width="276" height="36" fill="#1B6CA8"/>
+      <text x="205" y="134" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">Produção nos volumes</text>
+      <text x="499" y="134" fill="#fff" font-size="12" font-weight="700" font-family="Inter">60%</text>
       <!-- 52% -->
-      <rect x="200" y="180" width="250" height="40" fill="#4DA3D6"/>
-      <text x="195" y="202" text-anchor="end" font-size="11" fill="#1F2937" font-family="Inter">Níveis de estoque desejados</text>
-      <text x="463" y="202" fill="#fff" font-size="12" font-weight="700" font-family="Inter">52%</text>
+      <rect x="210" y="168" width="239" height="36" fill="#4DA3D6"/>
+      <text x="205" y="188" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">Níveis de estoque desejados</text>
+      <text x="462" y="188" fill="#fff" font-size="12" font-weight="700" font-family="Inter">52%</text>
       <!-- 52% -->
-      <rect x="200" y="240" width="250" height="40" fill="#7FB6E2"/>
-      <text x="195" y="262" text-anchor="end" font-size="11" fill="#1F2937" font-family="Inter">Cumprir prazos de pedidos</text>
-      <text x="463" y="262" fill="#1F2937" font-size="12" font-weight="700" font-family="Inter">52%</text>
+      <rect x="210" y="222" width="239" height="36" fill="#7FB6E2"/>
+      <text x="205" y="242" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">Cumprir prazos de pedidos</text>
+      <text x="462" y="242" fill="#1F2937" font-size="12" font-weight="700" font-family="Inter">52%</text>
       <!-- 38% -->
-      <rect x="200" y="300" width="182" height="40" fill="#A9D6F2"/>
-      <text x="195" y="322" text-anchor="end" font-size="11" fill="#1F2937" font-family="Inter">Insuficiência de capital de giro</text>
-      <text x="395" y="322" fill="#1F2937" font-size="12" font-weight="700" font-family="Inter">38%</text>
+      <rect x="210" y="276" width="175" height="36" fill="#A9D6F2"/>
+      <text x="205" y="296" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">Insuficiência de capital de giro</text>
+      <text x="398" y="296" fill="#1F2937" font-size="12" font-weight="700" font-family="Inter">38%</text>
     </svg>
     <div class="legenda">A falta de capital de giro afeta diretamente a capacidade da empresa de negociar com fornecedores, manter estoques adequados e cumprir prazos. Isso pode reduzir a competitividade e prejudicar o atendimento aos clientes.</div>
   </div>
 
   <div class="grafico">
     <h3>Gráfico 3 — Impacto da falta de produtos nas vendas</h3>
-    <svg viewBox="0 0 500 400" width="500" height="400">
-      <rect x="0" y="0" width="500" height="400" fill="#F4F7FA"/>
-      <line x1="80" y1="340" x2="80" y2="60" stroke="#999" stroke-width="1"/>
-      <line x1="80" y1="340" x2="460" y2="340" stroke="#999" stroke-width="1"/>
+    <svg viewBox="0 0 520 360" width="520" height="360" style="max-width: 100%; height: auto;">
+      <rect x="0" y="0" width="520" height="360" fill="#F4F7FA"/>
+      <line x1="90" y1="300" x2="90" y2="60" stroke="#999" stroke-width="1"/>
+      <line x1="90" y1="300" x2="480" y2="300" stroke="#999" stroke-width="1"/>
       <!-- 82,2% -->
-      <rect x="120" y="100" width="100" height="240" fill="#0B3C5D"/>
-      <text x="170" y="355" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Perda de vendas</text>
-      <text x="170" y="88" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" font-family="Inter">82,2%</text>
+      <rect x="130" y="100" width="110" height="200" fill="#0B3C5D"/>
+      <text x="185" y="315" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Perda de vendas</text>
+      <text x="185" y="88" text-anchor="middle" font-size="13" font-weight="700" fill="#fff" font-family="Inter">82,2%</text>
       <!-- 17,8% -->
-      <rect x="240" y="260" width="100" height="80" fill="#DCEEF7"/>
-      <text x="290" y="355" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Sem esse problema</text>
-      <text x="290" y="248" text-anchor="middle" font-size="12" font-weight="700" fill="#1F2937" font-family="Inter">17,8%</text>
-      <text x="60" y="345" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">0%</text>
-      <text x="60" y="220" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">40%</text>
-      <text x="60" y="100" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">80%</text>
-      <text x="50" y="70" text-anchor="end" font-size="9" fill="#1F2937" font-family="Inter">%</text>
+      <rect x="280" y="210" width="110" height="90" fill="#DCEEF7"/>
+      <text x="335" y="315" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Sem esse problema</text>
+      <text x="335" y="198" text-anchor="middle" font-size="13" font-weight="700" fill="#1F2937" font-family="Inter">17,8%</text>
+      <text x="70" y="305" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">0%</text>
+      <text x="70" y="200" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">40%</text>
+      <text x="70" y="100" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">80%</text>
     </svg>
     <div class="legenda">A falta de produtos foi apontada como um impacto relevante por 82,2% dos respondentes. Quando o cliente não encontra o produto desejado, ele pode comprar em outra empresa, gerando prejuízo para o negócio.</div>
   </div>
 
   <div class="grafico">
     <h3>Gráfico 4 — Exemplo: controle mensal de um produto</h3>
-    <svg viewBox="0 0 700 400" width="700" height="400">
-      <rect x="0" y="0" width="700" height="400" fill="#F4F7FA"/>
-      <line x1="80" y1="340" x2="80" y2="60" stroke="#999" stroke-width="1"/>
-      <line x1="80" y1="340" x2="660" y2="340" stroke="#999" stroke-width="1"/>
-      <!-- Eixo Y -->
-      <text x="60" y="345" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">0</text>
-      <text x="60" y="265" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">25</text>
-      <text x="60" y="190" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">50</text>
-      <text x="60" y="115" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">75</text>
-      <text x="60" y="60" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">100</text>
-      <!-- Grupos de barras -->
+    <svg viewBox="0 0 700 360" width="700" height="360" style="max-width: 100%; height: auto;">
+      <rect x="0" y="0" width="700" height="360" fill="#F4F7FA"/>
+      <line x1="90" y1="300" x2="90" y2="50" stroke="#999" stroke-width="1"/>
+      <line x1="90" y1="300" x2="660" y2="300" stroke="#999" stroke-width="1"/>
+      <text x="70" y="305" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">0</text>
+      <text x="70" y="240" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">25</text>
+      <text x="70" y="175" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">50</text>
+      <text x="70" y="110" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">75</text>
+      <text x="70" y="50" text-anchor="end" font-size="10" fill="#1F2937" font-family="Inter">100</text>
       <!-- Janeiro -->
-      <g transform="translate(120,0)">
-        <rect x="0" y="90" width="18" height="250" fill="#0B3C5D"/> <!-- 100 -->
-        <rect x="22" y="215" width="18" height="125" fill="#1B6CA8"/> <!-- 50 -->
-        <rect x="44" y="140" width="18" height="200" fill="#4DA3D6"/> <!-- 80 -->
-        <rect x="66" y="165" width="18" height="175" fill="#DCEEF7"/> <!-- 70 -->
+      <g transform="translate(130,0)">
+        <rect x="0" y="100" width="22" height="200" fill="#0B3C5D"/>
+        <rect x="28" y="200" width="22" height="100" fill="#1B6CA8"/>
+        <rect x="56" y="140" width="22" height="160" fill="#4DA3D6"/>
+        <rect x="84" y="160" width="22" height="140" fill="#DCEEF7"/>
       </g>
-      <text x="75" y="360" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Janeiro</text>
+      <text x="130" y="322" text-anchor="middle" font-size="10" fill="#1F2937" font-family="Inter">Jan</text>
       <!-- Fevereiro -->
-      <g transform="translate(230,0)">
-        <rect x="0" y="165" width="18" height="175" fill="#0B3C5D"/> <!-- 70 -->
-        <rect x="22" y="240" width="18" height="100" fill="#1B6CA8"/> <!-- 40 -->
-        <rect x="44" y="190" width="18" height="150" fill="#4DA3D6"/> <!-- 60 -->
-        <rect x="66" y="215" width="18" height="125" fill="#DCEEF7"/> <!-- 50 -->
+      <g transform="translate(240,0)">
+        <rect x="0" y="160" width="22" height="140" fill="#0B3C5D"/>
+        <rect x="28" y="220" width="22" height="80" fill="#1B6CA8"/>
+        <rect x="56" y="180" width="22" height="120" fill="#4DA3D6"/>
+        <rect x="84" y="200" width="22" height="100" fill="#DCEEF7"/>
       </g>
-      <text x="185" y="360" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Fevereiro</text>
+      <text x="240" y="322" text-anchor="middle" font-size="10" fill="#1F2937" font-family="Inter">Fev</text>
       <!-- Março -->
-      <g transform="translate(340,0)">
-        <rect x="0" y="215" width="18" height="125" fill="#0B3C5D"/> <!-- 50 -->
-        <rect x="22" y="190" width="18" height="150" fill="#1B6CA8"/> <!-- 60 -->
-        <rect x="44" y="227" width="18" height="112" fill="#4DA3D6"/> <!-- 45 -->
-        <rect x="66" y="165" width="18" height="175" fill="#DCEEF7"/> <!-- 65 -->
+      <g transform="translate(350,0)">
+        <rect x="0" y="200" width="22" height="100" fill="#0B3C5D"/>
+        <rect x="28" y="180" width="22" height="120" fill="#1B6CA8"/>
+        <rect x="56" y="210" width="22" height="90" fill="#4DA3D6"/>
+        <rect x="84" y="170" width="22" height="130" fill="#DCEEF7"/>
       </g>
-      <text x="295" y="360" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Março</text>
+      <text x="350" y="322" text-anchor="middle" font-size="10" fill="#1F2937" font-family="Inter">Mar</text>
       <!-- Abril -->
-      <g transform="translate(450,0)">
-        <rect x="0" y="190" width="18" height="150" fill="#0B3C5D"/> <!-- 65 -->
-        <rect x="22" y="265" width="18" height="75" fill="#1B6CA8"/> <!-- 30 -->
-        <rect x="44" y="140" width="18" height="200" fill="#4DA3D6"/> <!-- 70 -->
-        <rect x="66" y="265" width="18" height="75" fill="#DCEEF7"/> <!-- 25 -->
+      <g transform="translate(460,0)">
+        <rect x="0" y="180" width="22" height="120" fill="#0B3C5D"/>
+        <rect x="28" y="240" width="22" height="60" fill="#1B6CA8"/>
+        <rect x="56" y="140" width="22" height="160" fill="#4DA3D6"/>
+        <rect x="84" y="240" width="22" height="60" fill="#DCEEF7"/>
       </g>
-      <text x="405" y="360" text-anchor="middle" font-size="11" fill="#1F2937" font-family="Inter">Abril</text>
+      <text x="460" y="322" text-anchor="middle" font-size="10" fill="#1F2937" font-family="Inter">Abr</text>
+      <!-- Legenda -->
+      <g transform="translate(560,50)">
+        <rect x="0" y="0" width="14" height="14" fill="#0B3C5D"/><text x="20" y="12" font-size="11" fill="#1F2937" font-family="Inter">Estoque inicial</text>
+        <rect x="0" y="22" width="14" height="14" fill="#1B6CA8"/><text x="20" y="34" font-size="11" fill="#1F2937" font-family="Inter">Entradas</text>
+        <rect x="0" y="44" width="14" height="14" fill="#4DA3D6"/><text x="20" y="56" font-size="11" fill="#1F2937" font-family="Inter">Saídas</text>
+        <rect x="0" y="66" width="14" height="14" fill="#DCEEF7"/><text x="20" y="78" font-size="11" fill="#1F2937" font-family="Inter">Estoque final</text>
+      </g>
     </svg>
     <div class="legenda">Esse exemplo mostra a importância de registrar todas as movimentações do estoque. Sem esse controle, a empresa pode comprar mais do que precisa ou ficar sem produtos para atender os clientes.</div>
   </div>
